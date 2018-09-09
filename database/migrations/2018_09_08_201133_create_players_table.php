@@ -16,7 +16,9 @@ class CreatePlayersTable extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->increments('id');
             $table->char('hashed_id', 16)->nullable();
-            $table->string('name')->nullable();
+            $table->integer('team_id')->default(0);
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
