@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use App\Http\Resources\TeamResource;
+use App\Http\Resources\PlayerResource;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -16,13 +17,17 @@ class TeamController extends Controller
 
     public function index()
     {
-        return TeamResource::collection(Team::with('players')->get());
+        return TeamResource::collection(Team::with('players')->paginate(25));
 
     }
 
     public function store(Request $request)
     {
-        //
+        $team = Team::create([
+            'name' => $request->name
+        ]);
+
+        return new TeamResource($team);
     }
 
     public function show($id)

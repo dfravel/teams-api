@@ -16,3 +16,10 @@ Simple application that allows a user to create teams and players
 ### Functionality that exists
 - Database Migrations
 - Database Seed
+- API endpoint to get a team and its players
+
+### Functionality in process
+- API endpoint to add a team
+- API endpoint to add a player
+- API endpoint to update a player
+- Front end to test
