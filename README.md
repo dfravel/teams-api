@@ -11,3 +11,8 @@ Simple application that allows a user to create teams and players
 -   Generate the application key `php artisan key:generate`
 -   Run the database migration: `php artisan migrate`
 -   Run the database seed: `php artisan migrate:refresh --seed`
+
+
+### Functionality that exists
+- Database Migrations
+- Database Seed
