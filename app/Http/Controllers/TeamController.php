@@ -23,11 +23,9 @@ class TeamController extends Controller
 
     public function store(Request $request)
     {
-        $team = Team::create([
-            'name' => $request->name
-        ]);
+        $team = Team::create($request->all());
 
-        return new TeamResource($team);
+        return response()->json($team, 201);
     }
 
     public function show($id)
