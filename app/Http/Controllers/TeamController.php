@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use App\Http\Resources\TeamResource;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\PlayerResource;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,24 @@ class TeamController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 400);
+        }
         $team = Team::create($request->all());
 
-        return response()->json($team, 201);
+        $data = [
+            'data' => $team,
+            'status' => (bool)$team,
+            'message' => $team ? 'Team Created!' : 'Error Creating Team',
+        ];
+
+        return response()->json($data);
+
     }
 
     public function show($id)

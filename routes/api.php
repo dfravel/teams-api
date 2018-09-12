@@ -9,13 +9,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@authenticate');
-Route::get('open', 'DataController@open');
 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('user', 'UserController@getAuthenticatedUser');
-    Route::get('closed', 'DataController@closed');
-        // get the list of all the teams in the database
+
+    // standard resource controller for teams
     Route::apiResource('teams', 'TeamController');
+
+    // standard resource controller for players
+    Route::apiResource('players', 'PlayersController');
+
+    // simple - just want to see who we have as users in the system
+    Route::get('user-list', 'UserController@getUserList');
 });
 
 

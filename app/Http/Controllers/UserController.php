@@ -6,11 +6,20 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\UserResource;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class UserController extends Controller
 {
+
+    public function getUserList()
+    {
+        return UserResource::collection(User::paginate(25));
+    }
+
+     // testing with JWT - this is out of the box code for managing user authentication
+    // dave fravel did NOT write this code on his own
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -26,6 +35,8 @@ class UserController extends Controller
         return response()->json(compact('token'));
     }
 
+     // testing with JWT - this is out of the box code for managing user authentication
+    // dave frave did NOT write this code on his own with the exception of changing name to two fields first_name and last_name
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -51,6 +62,9 @@ class UserController extends Controller
         return response()->json(compact('user', 'token'), 201);
     }
 
+
+    // testing with JWT - this is out of the box code for managing user authentication
+    // dave frave did NOT write this code on his own
     public function getAuthenticatedUser()
     {
         try {
