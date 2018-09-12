@@ -31,14 +31,14 @@ At this time, this is an API-only application which means it will only work in s
     -   in order for this to work, you'll need to login and get the token
 -   API endpoint to return a list of users (protected)
     -   in order for this to work, you'll need to login and get the token
--   API endpoint to add a team
+-   API endpoint to add a team (protected)
     -   in order for this to work you'll need to login and get the token
--   API endpoint to add a player to a team
+-   API endpoint to add a player to a team (protected)
     -   in order for this to work you'll need to login and get the token
     -   team_id (int)
     -   first_name
     -   last_name
--   API endpoint to update a player
+-   API endpoint to update a player (protected)
     -   in order for this to work you'll need to login and get the token
     -   endpoint needs to be <URL>/api/players/<player_id>
     -   method needs to be POST
