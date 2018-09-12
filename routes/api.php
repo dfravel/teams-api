@@ -7,10 +7,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-// manage the login process
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthController@login');
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@authenticate');
+Route::get('open', 'DataController@open');
+
+Route::group(['middleware' => ['jwt.verify']], function () {
+    Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('closed', 'DataController@closed');
+        // get the list of all the teams in the database
+    Route::apiResource('teams', 'TeamController');
+});
 
 
-// get the list of all the teams in the database
-Route::apiResource('teams', 'TeamController');
+
